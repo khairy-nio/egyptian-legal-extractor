@@ -1,0 +1,6 @@
+pandas
+PyMuPDF
+arabic-reshaper
+python-bidi
+pytesseract
+Pillow

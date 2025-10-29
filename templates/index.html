@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تحويل PDF إلى CSV قانوني</title>
+    <style>
+        body {
+            font-family: "Cairo", sans-serif;
+            direction: rtl;
+            text-align: center;
+            background-color: #f7f8fa;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 تحويل ملفات PDF إلى CSV منظم</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="files" accept="application/pdf" multiple required>
+            <button type="submit">رفع ومعالجة</button>
+        </form>
+
+        {% if processed_files %}
+            <h3>✅ تم إنشاء الملفات التالية:</h3>
+            {% for file in processed_files %}
+                <a href="{{ url_for('download_file', filename=file) }}">📥 تحميل {{ file }}</a>
+            {% endfor %}
+        {% elif message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
